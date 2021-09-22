@@ -73,7 +73,7 @@ const Home = ({ match, history }) => {
         width='80%'
       >
         {loading && <CircularProgress />}
-        {products?.map((product) => (
+        {Array.isArray(products) && products?.map((product) => (
           // <Product  product={product} />
           <Box
             key={product._id}

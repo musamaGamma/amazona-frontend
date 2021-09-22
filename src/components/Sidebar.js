@@ -55,7 +55,7 @@ const handleLogout = () => {
                 {/* <ListSubheader style={{color: "white"}}>
                     Categories
                 </ListSubheader> */}
-                {categories?.map(category => (<ListItem key={category._id} button onClick={handleClose}> 
+                {Array.isArray(categories) && categories?.map(category => (<ListItem key={category._id} button onClick={handleClose}> 
                     <ListItemText style={{color: "white"}} primary={category.name} onClick={()=> history.push(`/categories/${category._id}`)}/>
                 </ListItem>))}
             </List>

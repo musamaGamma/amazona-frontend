@@ -29,7 +29,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.post(`/api/orders`, order, config);
+    const { data } = await axios.post(`https://amazon-clone-node-api.herokuapp.com/api/orders`, order, config);
     dispatch({
       type: CREATE_ORDER_SUCCESS,
       payload: data,
@@ -60,7 +60,7 @@ export const getOrder = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-  const { data } = await axios.get(`/api/orders/${id}`, config);
+  const { data } = await axios.get(`https://amazon-clone-node-api.herokuapp.com/api/orders/${id}`, config);
     dispatch({
       type: GET_ORDER_SUCCESS,
       payload: data,
@@ -90,7 +90,7 @@ export const getOrders = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-  const { data } = await axios.get(`/api/orders/`, config);
+  const { data } = await axios.get(`https://amazon-clone-node-api.herokuapp.com/api/orders/`, config);
     dispatch({
       type: GET_ORDERS_SUCCESS,
       payload: data,
@@ -123,7 +123,7 @@ export const payOrder = (orderId, token) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.put(`/api/orders/${orderId}/pay`,{token}, config);
+    const { data } = await axios.put(`https://amazon-clone-node-api.herokuapp.com/api/orders/${orderId}/pay`,{token}, config);
     dispatch({
       type: ORDER_PAY_SUCCESS,
       payload: data,

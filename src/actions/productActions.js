@@ -4,7 +4,7 @@ import axios from "axios"
 export const fetchCategories = () => async (dispatch) => {
     try {
         dispatch({ type: FETCH_CATEGORIES_REQUEST })
-        const { data } = await axios.get("/api/categories")
+        const { data } = await axios.get("https://amazon-clone-node-api.herokuapp.com/api/categories")
         dispatch({ type: FETCH_CATEGORIES_SUCCESS, payload: data })
     } catch (error) {
         console.log({ error })
@@ -33,7 +33,7 @@ export const createCategory = (name) => async (dispatch, getState) => {
             }
         }
 
-        const { data } = await axios.post("/api/categories",{name}, config)
+        const { data } = await axios.post("https://amazon-clone-node-api.herokuapp.com/api/categories",{name}, config)
         dispatch({ type:CREATE_CATEGORY_SUCCESS, payload: data })
     } catch (error) {
         console.log(error.message)
@@ -59,7 +59,7 @@ export const addProduct = (product) => async (dispatch, getState) => {
             }
         }
 
-        const { data } = await axios.post("/api/products", product, config)
+        const { data } = await axios.post("https://amazon-clone-node-api.herokuapp.com/api/products", product, config)
         dispatch({ type: ADD_PRODUCT_SUCCESS, payload: data })
     } catch (error) {
         console.log(error.message)
@@ -78,7 +78,7 @@ export const fetchProducts = (category="", keyword ="", pageNumber=1) => async (
         dispatch({ type: FETCH_PRODUCTS_REQUEST })
 
 
-        const { data } = await axios.get( `/api/products?keyword=${keyword}&pageNumber=${pageNumber}&category=${category}`)
+        const { data } = await axios.get( `https://amazon-clone-node-api.herokuapp.com/api/products?keyword=${keyword}&pageNumber=${pageNumber}&category=${category}`)
         dispatch({ type: FETCH_PRODUCTS_SUCCESS, payload: data })
     } catch (error) {
 
@@ -104,7 +104,7 @@ export const fetchMyProducts = () => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.get( `/api/products/me`, config)
+        const { data } = await axios.get( `https://amazon-clone-node-api.herokuapp.com/api/products/me`, config)
         console.log(data)
         dispatch({ type: FETCH_MY_PRODUCTS_SUCCESS, payload: data })
     } catch (error) {
@@ -123,7 +123,7 @@ export const getProductDetails = (id) => async (dispatch) => {
         dispatch({ type: PRODUCT_DETAILS_REQUEST })
 
 
-        const { data } = await axios.get(`/api/products/${id}`)
+        const { data } = await axios.get(`https://amazon-clone-node-api.herokuapp.com/api/products/${id}`)
         dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data })
     } catch (error) {
 
@@ -152,7 +152,7 @@ export const createReview = (productId, review) => async (
                 Authorization: `Bearer ${userInfo.token}`,
             },
         };
-        await axios.put(`/api/products/${productId}/reviews`, review, config);
+        await axios.put(`https://amazon-clone-node-api.herokuapp.com/api/products/${productId}/reviews`, review, config);
 
         dispatch({ type: CREATE_REVIEW_SUCCESS });
     } catch (error) {

@@ -84,7 +84,6 @@ const AddProduct = ({history, location}) => {
       
     }
     const handleAddCategory = ()=> {
-        console.log({categoryName})
         dispatch(createCategory(categoryName))
         setOpenCategory(false)
         // setCategoryName("")
@@ -93,9 +92,7 @@ const AddProduct = ({history, location}) => {
        if(!userInfo) history.push("/login") 
        dispatch(fetchCategories())
        if(success || errors) setOpen(true)
-       fetch('https://fakestoreapi.com/products/')
-            .then(res=>res.json())
-            .then(json=>console.log(json))
+    
     }, [userInfo, history, dispatch, success, errors, successCategory]);
 
     const classes = useStyles()
